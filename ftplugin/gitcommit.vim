@@ -51,7 +51,7 @@ function! s:gitdiffcached(bang,gitdir,...)
     let extra = "-p --stat=".&columns
   endif
   call system(git." diff --cached --no-color --no-ext-diff ".extra." > ".(exists("*shellescape") ? shellescape(name) : name))
-  exe "pedit ".(exists("*fnameescape") ? fnameescape(name) : name)
+  exe "vertical rightbelow pedit ".(exists("*fnameescape") ? fnameescape(name) : name)
   wincmd P
   let b:git_dir = a:gitdir
   command! -bang -bar -buffer -complete=custom,s:diffcomplete -nargs=* DiffGitCached :call s:gitdiffcached(<bang>0,b:git_dir,<f-args>)
